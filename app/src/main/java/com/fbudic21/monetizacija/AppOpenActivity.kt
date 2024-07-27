@@ -8,11 +8,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.fbudic21.monetizacija.ui.theme.MonetizacijaTheme
+import com.fbudic21.monetizacija.utils.AppOpenAdManager
 import com.google.android.gms.ads.MobileAds
 
 class AppOpenActivity : ComponentActivity() {
 
-    private lateinit var appOpenAdManager: MyApplicationb.AppOpenAdManager
+    private lateinit var appOpenAdManager: AppOpenAdManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +29,7 @@ class AppOpenActivity : ComponentActivity() {
                 }
             }
         }
-        appOpenAdManager = (application as MyApplicationb).appOpenAdManager
+        appOpenAdManager = (application as MyApplicationb).appOpenAdManager!!
         MobileAds.initialize(this) {}
         appOpenAdManager.showAdIfAvailable(this)
     }
