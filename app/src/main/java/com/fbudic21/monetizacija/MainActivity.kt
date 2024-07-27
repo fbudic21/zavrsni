@@ -1,5 +1,6 @@
 package com.fbudic21.monetizacija
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -10,17 +11,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import com.fbudic21.monetizacija.ui.theme.MonetizacijaTheme
 import com.google.android.gms.ads.*
-import com.google.android.gms.ads.VideoController
-import com.google.android.gms.ads.nativead.NativeAdOptions
-import com.google.android.gms.ads.nativead.NativeAdView
+import kotlinx.coroutines.Dispatchers
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +38,12 @@ class MainActivity : ComponentActivity() {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     Box(modifier = Modifier.fillMaxSize()) {
                         Column(modifier = Modifier.fillMaxSize()) {
+                            Button(onClick = {
+                                val intent = Intent(this@MainActivity, AppOpenActivity::class.java)
+                                startActivity(intent)
+                            }) {
+                                Text(text = "Open Ad Activity")
+                            }
                             Spacer(modifier = Modifier.weight(1f))
                             AdMobBanner(unitId = "ca-app-pub-3940256099942544/9214589741")
                         }
