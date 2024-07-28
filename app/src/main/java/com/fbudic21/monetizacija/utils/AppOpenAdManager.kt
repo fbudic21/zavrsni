@@ -16,8 +16,6 @@ class AppOpenAdManager (private val context: Context) {
     private var appOpenAd: AppOpenAd? = null
     private var isLoadingAd = false
     var isShowingAd = false
-    var loadTime: Long = 0
-
     private fun loadAd() {
         if (isLoadingAd || isAdAvailable) {
             return
@@ -32,7 +30,6 @@ class AppOpenAdManager (private val context: Context) {
                     Log.d(LOG_TAG, "Ad was loaded.")
                     appOpenAd = ad
                     isLoadingAd = false
-                    loadTime = Date().time
                 }
 
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
@@ -76,12 +73,6 @@ class AppOpenAdManager (private val context: Context) {
         appOpenAd!!.show(activity)
     }
 
-    private fun wasLoadTimeLessThanNHoursAgo(numHours: Long): Boolean {
-        val dateDifference = Date().time - loadTime
-        val numMilliSecondsPerHour: Long = 3600000
-        return dateDifference < numMilliSecondsPerHour * numHours
-    }
-
     private val isAdAvailable: Boolean
-    private get() = appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4)
+        get() = appOpenAd != null
 }

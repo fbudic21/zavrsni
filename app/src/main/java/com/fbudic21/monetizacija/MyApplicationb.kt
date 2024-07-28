@@ -15,7 +15,7 @@ import java.util.*
 const val LOG_TAG = "AppOpenAdManager"
 const val AD_UNIT_ID = "ca-app-pub-3940256099942544/9257395921"
 
-class MyApplicationb : Application(), ActivityLifecycleCallbacks, LifecycleObserver {
+class MyApplicationb : Application() /*,ActivityLifecycleCallbacks*//*, LifecycleObserver */{
     var appOpenAdManager: AppOpenAdManager? = null
     private var currentActivity: Activity? = null
     override fun onCreate() {
@@ -23,27 +23,27 @@ class MyApplicationb : Application(), ActivityLifecycleCallbacks, LifecycleObser
         MobileAds.initialize(
             this
         ) { }
-        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
+        //ProcessLifecycleOwner.get().lifecycle.addObserver(this)
         appOpenAdManager = AppOpenAdManager(this)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onMoveToForeground() {
+    //@OnLifecycleEvent(Lifecycle.Event.ON_START)
+    /*fun onMoveToForeground() {
         if (currentActivity != null) {
             appOpenAdManager!!.showAdIfAvailable(currentActivity!!)
         }
-    }
+    }*/
 
-    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
+    /*override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
     override fun onActivityStarted(activity: Activity) {
-        if (!appOpenAdManager!!.isShowingAd) {
+        /*if (!appOpenAdManager!!.isShowingAd) {
             currentActivity = activity
-        }
+        }*/
     }
 
     override fun onActivityResumed(activity: Activity) {}
     override fun onActivityStopped(activity: Activity) {}
     override fun onActivityPaused(activity: Activity) {}
     override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) {}
-    override fun onActivityDestroyed(activity: Activity) {}
+    override fun onActivityDestroyed(activity: Activity) {}*/
 }
