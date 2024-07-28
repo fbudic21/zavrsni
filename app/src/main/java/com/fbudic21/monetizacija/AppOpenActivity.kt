@@ -23,7 +23,6 @@ class AppOpenActivity : ComponentActivity() {
                     Box(modifier = Modifier.fillMaxSize()) {
                         Column(modifier = Modifier.fillMaxSize()) {
                             Spacer(modifier = Modifier.weight(1f))
-                            AdMobBanner(unitId = "ca-app-pub-3940256099942544/9214589741")
                         }
                     }
                 }
